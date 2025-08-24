@@ -12,3 +12,24 @@ function iniciar() {
   // Redirigir al cuestionario
   window.location.href = "src/cuestionario.html";
 }
+function guardarRespuestas() {
+  // Aquí vas leyendo los inputs del cuestionario
+  const salud = document.getElementById("salud").value;
+  const trabajo = document.getElementById("trabajo").value;
+  const familia = document.getElementById("familia").value;
+
+  // Validación básica
+  if (!salud || !trabajo || !familia) {
+    alert("Por favor responde todas las preguntas");
+    return;
+  }
+
+  // Guardar en localStorage
+  localStorage.setItem("salud", salud);
+  localStorage.setItem("trabajo", trabajo);
+  localStorage.setItem("familia", familia);
+
+  // Ir al resultado
+  window.location.href = "resultado.html";
+}
+
