@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario - Rueda de la Vida</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="saludo"></h1>
+    <p>Evalúa tu satisfacción en cada área del 1 al 10:</p>
+
+    <form id="form-cuestionario">
+      <div class="pregunta">
+        <label>1. Salud:</label>
+        <input type="number" name="salud" min="1" max="10" required>
+      </div>
+
+      <div class="pregunta">
+        <label>2. Finanzas:</label>
+        <input type="number" name="finanzas" min="1" max="10" required>
+      </div>
+
+      <div class="pregunta">
+        <label>3. Carrera / Trabajo:</label>
+        <input type="number" name="carrera" min="1" max="10" required>
+      </div>
+
+      <div class="pregunta">
+        <label>4. Desarrollo personal:</label>
+        <input type="number" name="desarrollo" min="1" max="10" required>
+      </div>
+
+      <div class="pregunta">
+        <label>5. Familia:</label>
+        <input type="number" name="familia" min="1" max="10" required>
+      </div>
+
+      <div class="pregunta">
+        <label>6. Amigos / Vida social:</label>
+        <input type="number" name="amigos" min="1" max="10" required>
+      </div>
+
+      <div class="pregunta">
+        <label>7. Pareja / Romance:</label>
+        <input type="number" name="pareja" min="1" max="10">
+      </div>
+
+      <div class="pregunta">
+        <label>8. Diversión / Ocio:</label>
+        <input type="number" name="ocio" min="1" max="10" required>
+      </div>
+
+      <button type="submit">Ver Resultados</button>
+    </form>
+  </div>
+
+  <script>
+    // Recupera el nombre desde localStorage
+    const nombre = localStorage.getItem("usuario");
+    document.getElementById("saludo").innerText = "Hola, " + (nombre || "Empleado") + " 👋";
+
+    // Captura y guarda los resultados
+    document.getElementById("form-cuestionario").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const datos = Object.fromEntries(new FormData(event.target).entries());
+      localStorage.setItem("resultados", JSON.stringify(datos));
+
+      // Ir a resultados
+      window.location.href = "resultados.html";
+    });
+  </script>
+</body>
+</html>

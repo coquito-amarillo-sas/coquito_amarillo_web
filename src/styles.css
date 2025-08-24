@@ -1,22 +1,36 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 2em;
-  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f8f9fa;
+  margin: 0;
 }
 
-form div {
-  margin-bottom: 10px;
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-canvas {
-  margin-top: 20px;
+input {
+  padding: 0.5rem;
+  margin: 1rem 0;
+  width: 80%;
 }
 
-#recomendaciones {
-  margin-top: 30px;
-  background: #fff;
-  padding: 1em;
-  border: 1px solid #ccc;
-  background-color: #f5f5dc;
-  color: #333;
+button {
+  padding: 0.7rem 1.5rem;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
 }
