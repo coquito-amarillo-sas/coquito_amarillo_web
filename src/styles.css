@@ -1,5 +1,22 @@
 body {
   font-family: Arial, sans-serif;
+  margin: 2em;
+  background-color: #f9f9f9;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+canvas {
+  margin-top: 20px;
+}
+
+#recomendaciones {
+  margin-top: 30px;
+  background: #fff;
+  padding: 1em;
+  border: 1px solid #ccc;
   background-color: #f5f5dc;
   color: #333;
 }
