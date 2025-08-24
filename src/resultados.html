@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados - Rueda de la Vida</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="saludo"></h1>
+    <h2>Tus resultados</h2>
+    <ul id="lista-resultados"></ul>
+  </div>
+
+  <script>
+    const nombre = localStorage.getItem("usuario");
+    document.getElementById("saludo").innerText = "Resultados de " + (nombre || "Empleado");
+
+    const resultados = JSON.parse(localStorage.getItem("resultados")) || {};
+    const lista = document.getElementById("lista-resultados");
+
+    for (const [area, valor] of Object.entries(resultados)) {
+      const li = document.createElement("li");
+      li.textContent = `${area.toUpperCase()}: ${valor}/10`;
+      lista.appendChild(li);
+    }
+  </script>
+</body>
+</html>
