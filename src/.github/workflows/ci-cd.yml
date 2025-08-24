@@ -1,0 +1,46 @@
+name: CI/CD - Rueda de la Vida
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout del repositorio
+      uses: actions/checkout@v3
+
+    - name: ⚡ Configurar Node.js (para validaciones y pruebas)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: 🔍 Validar HTML
+      uses: Cyb3r-Jak3/html5validator-action@v7
+      with:
+        root: "."
+
+    - name: ✅ Instalar dependencias
+      run: npm install
+
+    - name: 🚀 Ejecutar pruebas (placeholder)
+      run: echo "Aquí irían tus pruebas unitarias de JS"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: 📥 Checkout del repositorio
+      uses: actions/checkout@v3
+
+    - name: 🌐 Desplegar en GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
