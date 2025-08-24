@@ -10,5 +10,5 @@ function iniciar() {
   localStorage.setItem("usuario", nombre);
 
   // Redirigir al cuestionario
-  window.location.href = "cuestionario.html";
+  window.location.href = "src/cuestionario.html";
 }
