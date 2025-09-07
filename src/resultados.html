@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resultados - Rueda de la Vida</title>
   <link rel="stylesheet" href="styles.css">
-  
 </head>
 <body>
   <div class="container">
     <h1 id="saludo"></h1>
     <h2>Tus resultados</h2>
     <ul id="lista-resultados"></ul>
+
+    <h2>📊 Análisis</h2>
+    <p id="promedio"></p>
+    <p id="fortaleza"></p>
+    <p id="debilidad"></p>
+    <p id="sugerencia"></p>
   </div>
 
   <script>
@@ -21,10 +26,56 @@
     const resultados = JSON.parse(localStorage.getItem("resultados")) || {};
     const lista = document.getElementById("lista-resultados");
 
+    // Mostrar resultados en lista
     for (const [area, valor] of Object.entries(resultados)) {
       const li = document.createElement("li");
       li.textContent = `${area.toUpperCase()}: ${valor}/10`;
       lista.appendChild(li);
+    }
+
+    // Análisis
+    const valores = Object.values(resultados).map(Number);
+    if (valores.length > 0) {
+      const promedio = (valores.reduce((a, b) => a + b, 0) / valores.length).toFixed(1);
+      const maxArea = Object.entries(resultados).reduce((a, b) => a[1] > b[1] ? a : b);
+      const minArea = Object.entries(resultados).reduce((a, b) => a[1] < b[1] ? a : b);
+
+      document.getElementById("promedio").innerText = `Tu promedio general es: ${promedio}/10`;
+      document.getElementById("fortaleza").innerText = `✅ Tu mayor fortaleza es: ${maxArea[0].toUpperCase()} (${maxArea[1]}/10)`;
+      document.getElementById("debilidad").innerText = `⚠️ Tu área más débil es: ${minArea[0].toUpperCase()} (${minArea[1]}/10)`;
+
+      // Sugerencias según la debilidad
+      let sugerencia = "";
+      switch (minArea[0]) {
+        case "salud":
+          sugerencia = "Te recomendamos mejorar tus hábitos: dormir bien, hacer ejercicio y cuidar tu alimentación.";
+          break;
+        case "finanzas":
+          sugerencia = "Considera llevar un presupuesto mensual y ahorrar un pequeño porcentaje de tus ingresos.";
+          break;
+        case "carrera":
+          sugerencia = "Plantea metas profesionales claras y busca aprender nuevas habilidades.";
+          break;
+        case "desarrollo":
+          sugerencia = "Dedica tiempo a leer, estudiar y fortalecer tu crecimiento personal.";
+          break;
+        case "familia":
+          sugerencia = "Invierte más tiempo de calidad con tus seres queridos.";
+          break;
+        case "amigos":
+          sugerencia = "Mantén el contacto con tus amistades y busca fortalecer tus vínculos sociales.";
+          break;
+        case "pareja":
+          sugerencia = "Si tienes pareja, trabaja en la comunicación y la conexión emocional.";
+          break;
+        case "ocio":
+          sugerencia = "Recuerda equilibrar tu vida con actividades recreativas que disfrutes.";
+          break;
+        default:
+          sugerencia = "Reflexiona sobre esta área y piensa en pequeños pasos para mejorar.";
+      }
+
+      document.getElementById("sugerencia").innerText = `💡 Sugerencia: ${sugerencia}`;
     }
   </script>
 </body>
