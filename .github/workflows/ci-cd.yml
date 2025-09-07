@@ -1,4 +1,4 @@
-name: CI - Tests con Jest
+name: CI/CD - Rueda de la Vida
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +20,7 @@ jobs:
         node-version: '18'
 
     - name: 📦 Instalar dependencias
-      run: npm install
+      run: npm ci   # instala dependencias limpias (mejor que npm install en CI)
 
-    - name: 🧪 Ejecutar pruebas con Jest
+    - name: ✅ Ejecutar pruebas unitarias
       run: npm test
