@@ -14,17 +14,14 @@ jobs:
     - name: 📥 Checkout del repositorio
       uses: actions/checkout@v3
 
-    - name: ⚡ Configurar Node.js (para validaciones y pruebas)
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
     - name: 🔍 Validar HTML
       uses: Cyb3r-Jak3/html5validator-action@v0.4.4
       with:
         root: "."
 
+    # Solo corre npm si tienes package.json
     - name: ✅ Instalar dependencias
+      if: hashFiles('package.json') != ''
       run: npm install
 
     - name: 🚀 Ejecutar pruebas (placeholder)
@@ -43,4 +40,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+        publish_dir: ./  # ⚠️ cámbialo si tu index.html está en otra carpeta
