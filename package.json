@@ -1,0 +1,26 @@
+{
+  "name": "coquito_amarillo_web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coquito-amarillo-sas/coquito_amarillo_web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coquito-amarillo-sas/coquito_amarillo_web/issues"
+  },
+  "homepage": "https://github.com/coquito-amarillo-sas/coquito_amarillo_web#readme",
+  "devDependencies": {
+    "jest": "^30.1.3"
+  }
+}

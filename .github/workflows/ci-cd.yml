@@ -1,4 +1,4 @@
-name: CI/CD - Rueda de la Vida
+name: CI - Tests con Jest
 
 on:
   push:
@@ -7,41 +7,20 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - name: 📥 Checkout del repositorio
       uses: actions/checkout@v3
 
-    - name: ⚡ Configurar Node.js (para validaciones y pruebas)
+    - name: ⚡ Configurar Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
-    - name: 🔍 Validar HTML
-      uses: Cyb3r-Jak3/html5validator-action@v0.4.4
-      with:
-        root: "."
-
-    - name: ✅ Instalar dependencias
+    - name: 📦 Instalar dependencias
       run: npm install
 
-    - name: 🚀 Ejecutar pruebas (placeholder)
-      run: echo "Aquí irían tus pruebas unitarias de JS"
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-    - name: 📥 Checkout del repositorio
-      uses: actions/checkout@v3
-
-    - name: 🌐 Desplegar en GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./      # aquí va tu carpeta con index.html
-        publish_branch: gh-pages   # 👈 rama destino
+    - name: 🧪 Ejecutar pruebas con Jest
+      run: npm test
